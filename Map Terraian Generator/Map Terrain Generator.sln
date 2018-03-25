@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Map Terrain Generator", "Map Terrain Generator\Map Terrain Generator.vcxproj", "{D296C0EE-F3A3-4E3F-A52A-0CE9282CC273}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Map Generator Tester", "Map Generator Tester\Map Generator Tester.vcxproj", "{867881E0-768A-4BBE-A487-D886A04AD42F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D296C0EE-F3A3-4E3F-A52A-0CE9282CC273} = {D296C0EE-F3A3-4E3F-A52A-0CE9282CC273}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D296C0EE-F3A3-4E3F-A52A-0CE9282CC273}.Debug|x64.ActiveCfg = Debug|x64
+		{D296C0EE-F3A3-4E3F-A52A-0CE9282CC273}.Debug|x64.Build.0 = Debug|x64
+		{D296C0EE-F3A3-4E3F-A52A-0CE9282CC273}.Debug|x86.ActiveCfg = Debug|Win32
+		{D296C0EE-F3A3-4E3F-A52A-0CE9282CC273}.Debug|x86.Build.0 = Debug|Win32
+		{D296C0EE-F3A3-4E3F-A52A-0CE9282CC273}.Release|x64.ActiveCfg = Release|x64
+		{D296C0EE-F3A3-4E3F-A52A-0CE9282CC273}.Release|x64.Build.0 = Release|x64
+		{D296C0EE-F3A3-4E3F-A52A-0CE9282CC273}.Release|x86.ActiveCfg = Release|Win32
+		{D296C0EE-F3A3-4E3F-A52A-0CE9282CC273}.Release|x86.Build.0 = Release|Win32
+		{867881E0-768A-4BBE-A487-D886A04AD42F}.Debug|x64.ActiveCfg = Debug|x64
+		{867881E0-768A-4BBE-A487-D886A04AD42F}.Debug|x64.Build.0 = Debug|x64
+		{867881E0-768A-4BBE-A487-D886A04AD42F}.Debug|x86.ActiveCfg = Debug|Win32
+		{867881E0-768A-4BBE-A487-D886A04AD42F}.Debug|x86.Build.0 = Debug|Win32
+		{867881E0-768A-4BBE-A487-D886A04AD42F}.Release|x64.ActiveCfg = Release|x64
+		{867881E0-768A-4BBE-A487-D886A04AD42F}.Release|x64.Build.0 = Release|x64
+		{867881E0-768A-4BBE-A487-D886A04AD42F}.Release|x86.ActiveCfg = Release|Win32
+		{867881E0-768A-4BBE-A487-D886A04AD42F}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A3AB870-F4D2-47D3-BFFC-C992C015B46D}
+	EndGlobalSection
+EndGlobal
