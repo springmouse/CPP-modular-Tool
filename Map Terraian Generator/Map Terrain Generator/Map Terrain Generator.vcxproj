@@ -18,6 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DiamondSquare.h" />
+    <ClInclude Include="MapClass.h" />
+    <ClInclude Include="MapGeneratorClass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DiamondSquare.cpp" />
+    <ClCompile Include="MapClass.cpp" />
+    <ClCompile Include="MapGeneratorClass.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{D296C0EE-F3A3-4E3F-A52A-0CE9282CC273}</ProjectGuid>
@@ -26,13 +36,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -72,13 +82,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir)/Dependancies/glm-0.9.9-a2/glm;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)/Builds/$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)/Bin/$(Configuration)/</IntDir>
+    <OutDir>$(SolutionDir)/Lib/$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)/Bin/$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)/Dependancies/glm-0.9.9-a2/glm;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)/Builds/$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)/Bin/$(Configuration)/</IntDir>
+    <OutDir>$(SolutionDir)/Lib/$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)/Bin/$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -86,7 +96,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Dependancies/SFML-2.4.2/Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)/Dependancies/SFML-2.4.2/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -109,7 +120,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Dependancies/SFML-2.4.2/Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -132,9 +144,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

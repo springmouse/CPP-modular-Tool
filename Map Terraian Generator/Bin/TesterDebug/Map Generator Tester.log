@@ -1,0 +1,3 @@
+﻿  main.cpp
+c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map generator tester\main.cpp(6): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Map Generator Tester.vcxproj -> C:\Users\s171669\Documents\GitHub\CPP-modular-Tool\Map Terraian Generator\/builds/TesterDebug\Map Generator Tester.exe
