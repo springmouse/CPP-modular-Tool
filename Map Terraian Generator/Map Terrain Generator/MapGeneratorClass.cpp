@@ -13,9 +13,9 @@ MapGeneratorClass::~MapGeneratorClass()
 {
 }
 
-MapClass MapGeneratorClass::GenerateNewMap(eMapGenTypes type, int width, int scale)
+MapClass MapGeneratorClass::GenerateNewMap(eMapGenTypes type, int n, int scale)
 {
-	MapClass map(width, scale);
+	MapClass map(n, scale);
 
 	switch (type)
 	{

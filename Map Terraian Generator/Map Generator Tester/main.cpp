@@ -1,14 +1,12 @@
 #pragma once
-#include <MapGeneratorClass.h> 
-#include <vec3.hpp>
+
+#include "GameLoop.h"
 
 void main()
 {
-	MapGeneratorClass * mapGen = new MapGeneratorClass();
+	GameLoop * gm = new GameLoop();
 
-	MapClass map = mapGen->GenerateNewMap(eMapGenTypes::DIAMONDSQUARE, 2, 9);
-
-	std::string name = "AHHHHHHHHHH";
+	gm->GameLoopFunction();
 
 	return;
 }
