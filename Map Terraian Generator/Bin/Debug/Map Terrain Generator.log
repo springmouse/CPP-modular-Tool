@@ -1,12 +1,11 @@
-﻿  MapGeneratorClass.cpp
-  MapClass.cpp
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\mapclass.cpp(7): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\mapclass.cpp(8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  DiamondSquare.cpp
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
+﻿  DiamondSquare.cpp
+c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(85): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(91): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(93): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(95): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(98): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(99): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(100): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(111): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(118): warning C4018: '>': signed/unsigned mismatch
   Map Terrain Generator.vcxproj -> C:\Users\s171669\Documents\GitHub\CPP-modular-Tool\Map Terraian Generator\/Lib/Debug\Map Terrain Generator.lib

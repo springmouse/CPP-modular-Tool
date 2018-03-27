@@ -30,9 +30,16 @@ private:
 	bool m_running;
 
 	sf::Texture * m_watter;
+	sf::Sprite * m_watterSprite;
+
 	sf::Texture * m_grass;
+	sf::Sprite * m_grassSprite;
+
 	sf::Texture * m_stone;
+	sf::Sprite * m_stoneSprite;
+
 	sf::Texture * m_snow;
+	sf::Sprite * m_snowSprite;
 
 };
 

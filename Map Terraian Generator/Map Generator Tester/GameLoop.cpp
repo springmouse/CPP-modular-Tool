@@ -32,11 +32,26 @@ GameLoop::~GameLoop()
 
 void GameLoop::LoadResources()
 {
-	//m_watter = new sf::Texture();
-	//m_watter->loadFromFile("..\Resources\Sprites\Terrain\Watter.png");
-	//m_grass->loadFromFile("..\Resources\Sprites\Terrain\Grass.png");
-	//m_stone->loadFromFile("..\Resources\Sprites\Terrain\Stone.png");
-	//m_snow->loadFromFile("..\Resources\Sprites\Terrain\Snow.png");
+	m_watter = new sf::Texture();
+	m_watter->loadFromFile	("../Resources/Sprites/Terrain/Watter.png");
+	m_watterSprite = new sf::Sprite();
+	m_watterSprite->setTexture(*m_watter);
+
+	m_grass = new sf::Texture();
+	m_grass->loadFromFile	("../Resources/Sprites/Terrain/Grass.png");
+	m_grassSprite = new sf::Sprite();
+	m_grassSprite->setTexture(*m_grass);
+
+	m_stone = new sf::Texture();
+	m_stone->loadFromFile	("../Resources/Sprites/Terrain/Stone.png");
+	m_stoneSprite = new sf::Sprite();
+	m_stoneSprite->setTexture(*m_stone);
+
+	m_snow = new sf::Texture();
+	m_snow->loadFromFile	("../Resources/Sprites/Terrain/Snow.png");
+	m_snowSprite = new sf::Sprite();
+	m_snowSprite->setTexture(*m_snow);
+
 }
 
 void GameLoop::GameLoopFunction()
@@ -63,6 +78,30 @@ void GameLoop::Render()
 
 	// clear the window with black color
 	m_rWindow->clear(sf::Color::Black);
+
+	for (int i = 0; i < m_map->g_mapVertecs.size(); i++)
+	{
+		if (m_map->g_mapVertecs[i].z < 0.25f)
+		{
+			m_watterSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
+			m_rWindow->draw(*m_watterSprite);
+		}
+		else if (m_map->g_mapVertecs[i].z < 0.50f)
+		{
+			m_grassSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
+			m_rWindow->draw(*m_grassSprite);
+		}
+		else if (m_map->g_mapVertecs[i].z < 0.75f)
+		{
+			m_stoneSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
+			m_rWindow->draw(*m_stoneSprite);
+		}
+		else
+		{
+			m_snowSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
+			m_rWindow->draw(*m_snowSprite);
+		}
+	}
 
 	// draw everything here...
 	// window.draw(...);
@@ -110,7 +149,7 @@ void GameLoop::Events()
 			//m_rWindow->(0, 0, event.size.width, event.size.height);
 		}
 	}
-
+	
 	if (m_rWindow->isOpen() == false)
 	{
 		m_running = false;
