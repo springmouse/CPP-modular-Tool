@@ -6,7 +6,11 @@ GameLoop::GameLoop()
 {
 	m_mapGenerator = new MapGeneratorClass();
 
-	m_map = new MapClass(m_mapGenerator->GenerateNewMap(eMapGenTypes::DIAMONDSQUARE, 3, 1));
+	m_map = new MapClass(m_mapGenerator->GenerateNewMap(eMapGenTypes::DIAMONDSQUARE, 4, 1));
+
+	m_watterHeight = 0.15f;
+	m_earthHeight = 0.45f;
+	m_stoneHeight = 0.8f;
 
 	//sf::ContextSettings settings;
 	//settings.depthBits = 24;
@@ -77,21 +81,22 @@ void GameLoop::Render()
 	*/
 
 	// clear the window with black color
+
 	m_rWindow->clear(sf::Color::Black);
 
 	for (int i = 0; i < m_map->g_mapVertecs.size(); i++)
 	{
-		if (m_map->g_mapVertecs[i].z < 0.25f)
+		if (m_map->g_mapVertecs[i].z < m_watterHeight)
 		{
 			m_watterSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
 			m_rWindow->draw(*m_watterSprite);
 		}
-		else if (m_map->g_mapVertecs[i].z < 0.50f)
+		else if (m_map->g_mapVertecs[i].z < m_earthHeight)
 		{
 			m_grassSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
 			m_rWindow->draw(*m_grassSprite);
 		}
-		else if (m_map->g_mapVertecs[i].z < 0.75f)
+		else if (m_map->g_mapVertecs[i].z < m_stoneHeight)
 		{
 			m_stoneSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
 			m_rWindow->draw(*m_stoneSprite);
@@ -102,11 +107,7 @@ void GameLoop::Render()
 			m_rWindow->draw(*m_snowSprite);
 		}
 	}
-
-	// draw everything here...
-	// window.draw(...);
-
-	// end the current frame
+	
 	m_rWindow->display();
 
 }

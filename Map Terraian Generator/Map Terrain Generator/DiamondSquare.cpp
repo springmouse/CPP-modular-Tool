@@ -77,11 +77,37 @@ void DiamondSquare::MidPointDisplaceMeant(MapClass * map, int corner1, int corne
 	MidPointDisplaceMeant(map, (corner1 + corner3) / 2,	(corner1 + corner4) / 2,	corner3,					(corner3 + corner4) / 2, iteration + 1, maxIteration, seed);
 	
 	MidPointDisplaceMeant(map, (corner1 + corner4) / 2,	(corner2 + corner4) / 2,	(corner3 + corner4) / 2,	corner4,				 iteration + 1, maxIteration, seed);
+
+	if(iteration == 0)
+	{
+		float max = 0;
+
+		for (int i = 0; i < map->g_mapPoints.size(); i++)
+		{
+			if (abs(map->g_mapPoints[i]) > max)
+			{
+				max = map->g_mapPoints[i];
+			}
+		}
+
+		for (int i = 0; i < map->g_mapPoints.size(); i++)
+		{
+			map->g_mapPoints[i] = abs(map->g_mapPoints[i] / max);
+		}
+	}
 }
 */
 
+
+
 void DiamondSquare::MidPointDisplaceMeant(MapClass * map, int corner1, int corner2, int corner3, int corner4, int iteration, int maxIteration, unsigned int seed)
 {
+
+	if (seed != 0)
+	{
+		std::srand(seed);
+	}
+
 	float stepSize = map->size - 1;
 	float lower = -0.1f;
 	float upper = 0.1f;
@@ -145,4 +171,20 @@ void DiamondSquare::MidPointDisplaceMeant(MapClass * map, int corner1, int corne
 		lower += 0.005f;
 		upper += 0.005f;
 	}
+
+	float max = 0;
+
+	for (int i = 0; i < map->g_mapPoints.size(); i++)
+	{
+		if (abs(map->g_mapPoints[i]) > max)
+		{
+			max = map->g_mapPoints[i];
+		}
+	}
+
+	for (int i = 0; i < map->g_mapPoints.size(); i++)
+	{
+		map->g_mapPoints[i] = abs(map->g_mapPoints[i] / max);
+	}
 }
+

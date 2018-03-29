@@ -20,7 +20,7 @@ MapClass MapGeneratorClass::GenerateNewMap(eMapGenTypes type, int n, int scale)
 	switch (type)
 	{
 	case DIAMONDSQUARE:
-		m_diamondSquare->MidPointDisplaceMeant(& map, 0, map.size - 1, map.size * (map.size - 1), map.g_mapPoints.size() - 1, 0, map.size / 2, 0);
+		m_diamondSquare->MidPointDisplaceMeant(& map, 0, map.size - 1, map.size * (map.size - 1), map.g_mapPoints.size() - 1, 0, map.size / 2, 10908060607);
 		break;
 
 	default:

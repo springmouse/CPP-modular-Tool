@@ -41,5 +41,6 @@ private:
 	sf::Texture * m_snow;
 	sf::Sprite * m_snowSprite;
 
+	float m_watterHeight, m_earthHeight, m_stoneHeight;
 };
 
