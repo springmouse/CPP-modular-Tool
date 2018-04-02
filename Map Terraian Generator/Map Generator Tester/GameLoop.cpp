@@ -12,17 +12,11 @@ GameLoop::GameLoop()
 	m_earthHeight = 0.45f;
 	m_stoneHeight = 0.8f;
 
-	//sf::ContextSettings settings;
-	//settings.depthBits = 24;
-	//settings.stencilBits = 8;
-	//settings.antialiasingLevel = 4;
-	//settings.majorVersion = 3;
-	//settings.minorVersion = 0;
-	//
-	//m_glWindow = new sf::Window(sf::VideoMode(800, 600), "OpenGL", sf::Style::Default, settings);
-	//glEnable(GL_TEXTURE_2D);
+	m_speed = 100.0f;
 
 	m_rWindow = new sf::RenderWindow(sf::VideoMode(800, 600), "My Window");
+
+	m_mainVeiw = new sf::View(sf::FloatRect(400, 400, 600, 400) );
 
 	m_running = true;
 
@@ -62,7 +56,12 @@ void GameLoop::GameLoopFunction()
 {
 	while (m_running)
 	{
+		m_time = m_clock.restart();
+		m_deltaTime = m_time.asSeconds();
+
 		Events();
+
+		MoveVeiw();
 
 		Render();
 	}
@@ -70,19 +69,11 @@ void GameLoop::GameLoopFunction()
 
 void GameLoop::Render()
 {
-	/*
-	// clear the buffers
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	// draw...
-
-	// end the current frame (internally swaps the front and back buffers)
-	m_glWindow->display();
-	*/
-
-	// clear the window with black color
+	m_rWindow->setView(*m_mainVeiw); // setView(*m_mainVeiw);
 
 	m_rWindow->clear(sf::Color::Black);
+
+	m_rWindow->pushGLStates();
 
 	for (int i = 0; i < m_map->g_mapVertecs.size(); i++)
 	{
@@ -107,8 +98,10 @@ void GameLoop::Render()
 			m_rWindow->draw(*m_snowSprite);
 		}
 	}
-	
+	m_rWindow->popGLStates();
+
 	m_rWindow->display();
+	
 
 }
 
@@ -116,43 +109,41 @@ void GameLoop::Events()
 {
 	sf::Event event;
 
-	/*
-	while (m_glWindow->pollEvent(event))
-	{
-		if (event.type == sf::Event::Closed)
-		{
-			// end the program
-			m_running = false;
-		}
-		else if (event.type == sf::Event::Resized)
-		{
-			// adjust the viewport when the window is resized
-			glViewport(0, 0, event.size.width, event.size.height);
-		}
-	}
-
-	if (m_glWindow->isOpen == false)
-	{
-		m_running = false;
-	}
-	*/
-
 	while (m_rWindow->pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 		{
-			// end the program
+			//end the program
 			m_running = false;
 		}
 		else if (event.type == sf::Event::Resized)
 		{
-			// adjust the viewport when the window is resized
-			//m_rWindow->(0, 0, event.size.width, event.size.height);
+			//adjust the viewport when the window is resized
+			//m_rWindow->setSize(0, 0, event.size.width, event.size.height);
 		}
 	}
-	
-	if (m_rWindow->isOpen() == false)
+
+}
+
+void GameLoop::MoveVeiw()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		m_running = false;
+		m_mainVeiw->move(sf::Vector2f(-1.0f * m_deltaTime * m_speed, 0.0f));
+	}
+
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		m_mainVeiw->move(sf::Vector2f(1.0f * m_deltaTime * m_speed, 0.0f));
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		m_mainVeiw->move(sf::Vector2f(0.0f, -1.0f * m_deltaTime * m_speed));
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		m_mainVeiw->move(sf::Vector2f(0.0f, 1.0f * m_deltaTime * m_speed));
 	}
 }

@@ -108,7 +108,7 @@ void DiamondSquare::MidPointDisplaceMeant(MapClass * map, int corner1, int corne
 		std::srand(seed);
 	}
 
-	float stepSize = map->size - 1;
+	float stepSize = (int)(map->size - 1);
 	float lower = -0.1f;
 	float upper = 0.1f;
 
@@ -116,9 +116,9 @@ void DiamondSquare::MidPointDisplaceMeant(MapClass * map, int corner1, int corne
 	{
 		int halfStep = stepSize / 2;
 
-		for (int x = 0; x < map->size -1; x += stepSize)
+		for (int x = 0; x < map->size -1; x += (int)stepSize)
 		{
-			for (int y = 0; y < map->size -1; y += stepSize)
+			for (int y = 0; y < map->size -1; y += (int)stepSize)
 			{
 				float topLeft = map->g_mapPoints[x + (map->size * y)];
 				float topRight = map->g_mapPoints[x + stepSize + (map->size * y)];
@@ -187,4 +187,3 @@ void DiamondSquare::MidPointDisplaceMeant(MapClass * map, int corner1, int corne
 		map->g_mapPoints[i] = abs(map->g_mapPoints[i] / max);
 	}
 }
-

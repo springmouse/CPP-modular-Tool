@@ -4,8 +4,6 @@
 #include<SFML\Window.hpp>
 #include<SFML\Graphics.hpp>
 
-//#include<SFML\OpenGL.hpp>
-
 class GameLoop
 {
 public:
@@ -18,14 +16,20 @@ public:
 	void Render();
 	void Events();
 
+	void MoveVeiw();
+
 private:
 	MapGeneratorClass * m_mapGenerator;
 	MapClass * m_map;
 
-
-	//sf::Window * m_glWindow;
 	sf::RenderWindow * m_rWindow;
 
+	sf::View * m_mainVeiw;
+	float m_speed;
+
+	sf::Clock m_clock;
+	sf::Time m_time;
+	float m_deltaTime;
 
 	bool m_running;
 
