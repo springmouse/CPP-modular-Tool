@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Map Terrain Generator;$(SolutionDir)/Dependancies/glew-2.1.0/include;$(SolutionDir)/Dependancies/glfw-3.2.1/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Map Terrain Generator;$(SolutionDir)/Dependancies/glew-2.1.0/include;$(SolutionDir)/Dependancies/glfw-3.2.1/include;$(SolutionDir)/Dependancies/glm-0.9.9-a2/glm</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -100,7 +100,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Map Terrain Generator;$(SolutionDir)/Dependancies/glew-2.1.0/include;$(SolutionDir)/Dependancies/glfw-3.2.1/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Map Terrain Generator;$(SolutionDir)/Dependancies/glew-2.1.0/include;$(SolutionDir)/Dependancies/glfw-3.2.1/include;$(SolutionDir)/Dependancies/glm-0.9.9-a2/glm</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
