@@ -1,11 +1,1 @@
-﻿  DiamondSquare.cpp
-c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(111): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(117): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(124): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(125): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(126): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(137): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(144): warning C4018: '>': signed/unsigned mismatch
-c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(177): warning C4018: '<': signed/unsigned mismatch
-c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(185): warning C4018: '<': signed/unsigned mismatch
-  Map Terrain Generator.vcxproj -> C:\Users\callu.DESKTOP-LVUVE2B\Documents\GitHub\CPP-modular-Tool\Map Terraian Generator\/Lib/Debug\Map Terrain Generator.lib
+﻿  Map Terrain Generator.vcxproj -> C:\Users\s171669\Documents\GitHub\CPP-modular-Tool\Map Terraian Generator\/Lib/Debug\Map Terrain Generator.lib

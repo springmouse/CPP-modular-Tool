@@ -6,7 +6,7 @@ GameLoop::GameLoop()
 {
 	m_mapGenerator = new MapGeneratorClass();
 
-	m_map = new MapClass(m_mapGenerator->GenerateNewMap(eMapGenTypes::DIAMONDSQUARE, 4, 1));
+	m_map = new MapClass(m_mapGenerator->GenerateNewMap(eMapGenTypes::DIAMONDSQUARE, 6, 1));
 
 	m_watterHeight = 0.15f;
 	m_earthHeight = 0.45f;
