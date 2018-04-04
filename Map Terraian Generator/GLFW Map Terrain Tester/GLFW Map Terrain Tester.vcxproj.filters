@@ -45,6 +45,9 @@
     <ClCompile Include="IndexBuffer.cpp">
       <Filter>SRC</Filter>
     </ClCompile>
+    <ClCompile Include="VertexArrayObject.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -60,6 +63,12 @@
       <Filter>SRC</Filter>
     </ClInclude>
     <ClInclude Include="IndexBuffer.h">
+      <Filter>SRC</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexArrayObject.h">
+      <Filter>SRC</Filter>
+    </ClInclude>
+    <ClInclude Include="VertextBufferLayout.h">
       <Filter>SRC</Filter>
     </ClInclude>
   </ItemGroup>

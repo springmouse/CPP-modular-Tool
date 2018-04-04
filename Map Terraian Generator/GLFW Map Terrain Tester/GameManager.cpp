@@ -15,6 +15,8 @@ GameManager::GameManager()
 
 GameManager::~GameManager()
 {
+	delete(m_vbo);
+	delete(m_ibo);
 }
 
 void GameManager::Init()
@@ -72,10 +74,11 @@ void GameManager::Init()
 	//generate VBO (vertec buffer object)
 	m_vbo = new VertexBuffer(verts, sizeof(verts));
 
-	GLCall(glEnableVertexAttribArray(0));
-	GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, (void*)0));
+	///////////////////////////////////////
 
 	m_ibo = new IndexBuffer(indicies, 6);
+	m_vao->AddBuffer(m_ibo);
+	m_vao->AddLayout
 
 	ShaderProgramSource source = ParseShader("Resources/Shaders/Basic.shader");
 
@@ -131,7 +134,7 @@ void GameManager::Renderer()
 	GLCall(glUseProgram(shader));
 	GLCall(glUniform4f(location, r, g, b, 1.0f));
 
-	GLCall(glBindVertexArray(m_vaoID));
+	m_vbo->Bind();
 	m_ibo->Bind();
 
 
