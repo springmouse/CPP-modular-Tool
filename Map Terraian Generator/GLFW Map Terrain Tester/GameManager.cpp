@@ -5,8 +5,11 @@
 
 
 
+
 GameManager::GameManager()
 {
+	m_vbo = nullptr;
+	m_ibo = nullptr;
 }
 
 
@@ -22,6 +25,11 @@ void GameManager::Init()
 		//did not succed init glfw
 		fprintf(stderr, "GLFW Failed to initialise");
 	}
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 
 	m_window = glfwCreateWindow(640, 480, "Main GL Window", NULL, NULL);
 
@@ -62,16 +70,12 @@ void GameManager::Init()
 	};
 
 	//generate VBO (vertec buffer object)
-	GLCall(glGenBuffers(1, &vboID));
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, vboID));
-	GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW));
+	m_vbo = new VertexBuffer(verts, sizeof(verts));
 
 	GLCall(glEnableVertexAttribArray(0));
 	GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, (void*)0));
 
-	GLCall(glGenBuffers(1, &ibo));
-	GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo));
-	GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indicies), indicies, GL_STATIC_DRAW));
+	m_ibo = new IndexBuffer(indicies, 6);
 
 	ShaderProgramSource source = ParseShader("Resources/Shaders/Basic.shader");
 
@@ -86,6 +90,11 @@ void GameManager::Init()
 	GLCall(location = glGetUniformLocation(shader, "u_color"));
 	ASSERT(location != -1);
 	GLCall(glUniform4f(location, r, g, b, 1.0f));
+
+	GLCall(glBindVertexArray(0));
+	GLCall(glUseProgram(0));
+	GLCall(glBindBuffer(GL_ARRAY_BUFFER,0));
+	m_ibo->Unbind();
 
 }
 
@@ -117,27 +126,16 @@ void GameManager::GameLoop()
 
 void GameManager::Renderer()
 {
-
-	GLCall(glUniform4f(location, r, g, b, 1.0f));
-
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	GLCall(glUseProgram(shader));
+	GLCall(glUniform4f(location, r, g, b, 1.0f));
+
+	GLCall(glBindVertexArray(m_vaoID));
+	m_ibo->Bind();
+
+
 	GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
-}
-
-void GameManager::GLClearError()
-{
-	while (glGetError() != GL_NO_ERROR);
-}
-
-bool GameManager::GLLogCall(const char * function, const char* file, int line)
-{
-	while (GLenum error = glGetError())
-	{
-		std::cout << "[OpenGL Error} (" << error << "): Function = " << function << ": File = " << file  << ": Line = " << line << std::endl;
-		return false;
-	}
-	return true;
 }
 
 unsigned int GameManager::CreateShader(const std::string & vertexShader, const std::string & FragmentShader)

@@ -9,6 +9,11 @@
 #include <fstream>
 #include <sstream>
 
+#include "Render.h"
+
+#include "IndexBuffer.h"
+#include "VertexBuffer.h"
+
 struct ShaderProgramSource
 {
 	std::string vertexSource;
@@ -27,10 +32,7 @@ public:
 	void GameLoop();
 
 	void Renderer();
-
-	static void GLClearError();
-	static bool GLLogCall(const char * function, const char* file, int line);
-
+	
 	static unsigned int CreateShader(const std::string & vertexShader, const std::string & FragmentShader);
 	static unsigned int  CompileShader(unsigned int type, const std::string & source);
 	static ShaderProgramSource ParseShader(const std::string & filePath);
@@ -38,10 +40,11 @@ public:
 private:
 	GLFWwindow * m_window;
 
-	GLuint m_vaoID;
-	GLuint vboID;
-	unsigned int ibo;
-		
+	unsigned int m_vaoID;
+
+	VertexBuffer * m_vbo;
+	IndexBuffer * m_ibo;
+
 	unsigned int shader;
 
 	bool m_running;
@@ -51,8 +54,3 @@ private:
 	float incermeant;
 };
 
-
-#define ASSERT(x) if(!(x)) __debugbreak();
-#define GLCall(x) GameManager::GLClearError();\
-	x;\
-	ASSERT(GameManager::GLLogCall(#x, __FILE__, __LINE__));

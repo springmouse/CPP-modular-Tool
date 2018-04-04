@@ -16,6 +16,15 @@
     <Filter Include="GameManagemeant">
       <UniqueIdentifier>{019ad24e-b4d6-4f23-b4ab-dcb210310f6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SRC">
+      <UniqueIdentifier>{c8f9b868-ad83-43ff-bf37-6b308f6469ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SRC\Vendore">
+      <UniqueIdentifier>{34f4c789-345b-4378-a7a0-f9e7bd473ed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SRC\Vendore\stb_image">
+      <UniqueIdentifier>{720ebaff-59b1-42da-bac9-7bc4e5a8c78d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,10 +33,34 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>GameManagemeant</Filter>
     </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>SRC\Vendore\stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
       <Filter>GameManagemeant</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>SRC\Vendore\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>SRC</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>SRC</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>SRC</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
