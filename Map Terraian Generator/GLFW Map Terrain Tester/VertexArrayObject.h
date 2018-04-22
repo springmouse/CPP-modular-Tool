@@ -2,6 +2,8 @@
 #include "VertexBuffer.h"
 #include "VertextBufferLayout.h"
 
+#include "GL_Calls.h"
+
 class VertexArrayObject
 {
 public:
@@ -10,7 +12,10 @@ public:
 
 	void AddBuffer(const VertexBuffer & vb, const VertextBufferLayout & layout);
 
-private:
+	void Bind() const;
+	void Unbind() const;
 
+private:
+	unsigned int m_renderID;
 };
 

@@ -10,6 +10,11 @@ GameManager::GameManager()
 {
 	m_vbo = nullptr;
 	m_ibo = nullptr;
+	m_vao = nullptr;
+	m_vbl = nullptr;
+	m_shader = nullptr;
+
+	m_renderer = new Render();
 }
 
 
@@ -17,6 +22,10 @@ GameManager::~GameManager()
 {
 	delete(m_vbo);
 	delete(m_ibo);
+	delete(m_vao);
+	delete(m_vbl);
+	delete(m_shader);
+	delete(m_renderer);
 }
 
 void GameManager::Init()
@@ -52,9 +61,6 @@ void GameManager::Init()
 
 	std::cout << glGetString(GL_VERSION) << std::endl;
 
-	//look up vao (vertex array object)
-	GLCall(glGenVertexArrays(1, &m_vaoID));
-	GLCall(glBindVertexArray(m_vaoID));
 
 	static const GLfloat verts[] = 
 	{
@@ -71,33 +77,28 @@ void GameManager::Init()
 		2,3,0
 	};
 
-	//generate VBO (vertec buffer object)
+	m_vao = new VertexArrayObject();
 	m_vbo = new VertexBuffer(verts, sizeof(verts));
+	m_vbl = new VertextBufferLayout();
 
-	///////////////////////////////////////
+	m_vbl->Push<float>(2);
+	m_vao->AddBuffer(*m_vbo, *m_vbl);
 
 	m_ibo = new IndexBuffer(indicies, 6);
-	m_vao->AddBuffer(m_ibo);
-	m_vao->AddLayout
 
-	ShaderProgramSource source = ParseShader("Resources/Shaders/Basic.shader");
-
-	shader = CreateShader(source.vertexSource, source.fragmentSource);
-	
-	GLCall(glUseProgram(shader));
+	//implameant shader here
+	m_shader = new CustomShader("Resources/Shaders/Basic.shader");
+	m_shader->Bind();
+	m_shader->SetUniform("u_color", glm::vec4(0.8f, 0.3f, 0.8f, 1.0f));
 
 	r = 0.0f;
 	g = 1.0f;
 	b = 1.0f;
 
-	GLCall(location = glGetUniformLocation(shader, "u_color"));
-	ASSERT(location != -1);
-	GLCall(glUniform4f(location, r, g, b, 1.0f));
-
-	GLCall(glBindVertexArray(0));
-	GLCall(glUseProgram(0));
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER,0));
+	m_vao->Unbind();
+	m_vbo->Unbind();
 	m_ibo->Unbind();
+	m_shader->Unbind();
 
 }
 
@@ -123,7 +124,6 @@ void GameManager::GameLoop()
 		glfwPollEvents();
 	}
 
-	GLCall(glDeleteProgram(shader));
 	glfwTerminate();
 }
 
@@ -131,94 +131,10 @@ void GameManager::Renderer()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	GLCall(glUseProgram(shader));
-	GLCall(glUniform4f(location, r, g, b, 1.0f));
-
-	m_vbo->Bind();
-	m_ibo->Bind();
-
-
-	GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+	m_shader->Bind();
+	m_shader->SetUniform("u_color", glm::vec4(r, g, b, 1.0f));
+	
+	m_renderer->Draw(*m_vao, *m_ibo, *m_shader);
 }
 
-unsigned int GameManager::CreateShader(const std::string & vertexShader, const std::string & FragmentShader)
-{
-	GLCall(unsigned int programe = glCreateProgram());
 
-	GLCall(unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader));
-	GLCall(unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, FragmentShader));
-
-	GLCall(glAttachShader(programe, vs));
-	GLCall(glAttachShader(programe, fs));
-	GLCall(glLinkProgram(programe));
-	GLCall(glValidateProgram(programe));
-
-	GLCall(glDeleteShader(vs));
-	GLCall(glDeleteShader(fs));
-
-	return programe;
-}
-
-unsigned int GameManager::CompileShader(unsigned int type, const std::string & source)
-{
-	GLCall(unsigned int id = glCreateShader(type));
-
-	const char * src = source.c_str();
-
-	GLCall(glShaderSource(id, 1, & src, nullptr));
-
-	GLCall(glCompileShader(id));
-
-	int resault;
-	GLCall(glGetShaderiv(id, GL_COMPILE_STATUS, &resault));
-
-	if (resault == GL_FALSE)
-	{
-		int leangth;
-		glGetShaderiv(id, GL_INFO_LOG_LENGTH, & leangth);
-		char * message = (char *)alloca(leangth * sizeof(char));
-		glGetShaderInfoLog(id, leangth, &leangth, message);
-		std::cout << "Failed To Compile Shader" << (type == GL_VERTEX_SHADER ? "Vertex" : "Fragmeant") << std::endl;
-		std::cout << message << std::endl;
-		glDeleteShader(id);
-		return 0;
-	}
-
-	return id;
-}
-
-ShaderProgramSource GameManager::ParseShader(const std::string & filePath)
-{
-	std::ifstream stream(filePath);
-
-	enum class ShaderType
-	{
-		NONE = -1, VERTEX = 0, FRAGMENT =1
-	};
-
-	std::string line;
-	std::stringstream ss[2];
-
-	ShaderType type = ShaderType::NONE;
-
-	while (std::getline(stream, line))
-	{
-		if (line.find("#shader") != std::string::npos)
-		{
-			if (line.find("vertex") != std::string::npos)
-			{
-				type = ShaderType::VERTEX;
-			}
-			else if (line.find("fragment") != std::string::npos)
-			{
-				type = ShaderType::FRAGMENT;
-			}
-		}
-		else
-		{
-			ss[(int)type] << line << '\n';
-		}
-	}
-
-	return { ss[0].str(), ss[1].str() };
-}

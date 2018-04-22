@@ -1,1 +1,19 @@
-﻿  Map Terrain Generator.vcxproj -> C:\Users\s171669\Documents\GitHub\CPP-modular-Tool\Map Terraian Generator\/Lib/Debug\Map Terrain Generator.lib
+﻿  MapGeneratorClass.cpp
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\mapgeneratorclass.cpp(23): warning C4305: 'argument': truncation from '__int64' to 'unsigned int'
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\mapgeneratorclass.cpp(23): warning C4309: 'argument': truncation of constant value
+  MapClass.cpp
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\mapclass.cpp(7): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\mapclass.cpp(8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\mapclass.cpp(40): warning C4018: '<': signed/unsigned mismatch
+  DiamondSquare.cpp
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(111): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(117): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(124): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(125): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(126): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(137): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(144): warning C4018: '>': signed/unsigned mismatch
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(177): warning C4018: '<': signed/unsigned mismatch
+c:\users\callu.desktop-lvuve2b\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(185): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Map Terrain Generator.vcxproj -> C:\Users\callu.DESKTOP-LVUVE2B\Documents\GitHub\CPP-modular-Tool\Map Terraian Generator\/Lib/Debug\Map Terrain Generator.lib

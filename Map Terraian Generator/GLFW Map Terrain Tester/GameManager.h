@@ -13,13 +13,11 @@
 
 #include "IndexBuffer.h"
 #include "VertexBuffer.h"
+#include "VertexArrayObject.h";
+#include "VertextBufferLayout.h"
+#include "CustomShader.h"
 
-struct ShaderProgramSource
-{
-	std::string vertexSource;
-	std::string fragmentSource;
-};
-
+#include "GL_Calls.h"
 
 class GameManager
 {
@@ -33,19 +31,17 @@ public:
 
 	void Renderer();
 	
-	static unsigned int CreateShader(const std::string & vertexShader, const std::string & FragmentShader);
-	static unsigned int  CompileShader(unsigned int type, const std::string & source);
-	static ShaderProgramSource ParseShader(const std::string & filePath);
-
 private:
 	GLFWwindow * m_window;
-
-	unsigned int m_vaoID;
-
+	
+	VertexArrayObject * m_vao;
+	VertextBufferLayout * m_vbl;
 	VertexBuffer * m_vbo;
 	IndexBuffer * m_ibo;
 
-	unsigned int shader;
+	CustomShader * m_shader;
+
+	Render * m_renderer;
 
 	bool m_running;
 

@@ -1,15 +1,19 @@
 #pragma once
 
+#include "VertexArrayObject.h"
+#include "IndexBuffer.h"
+#include "CustomShader.h"
+
 #include <GL/glew.h>
 
 #include <string>
 
-#define ASSERT(x) if(!(x)) __debugbreak();
-#define GLCall(x) GLClearError();\
-	x;\
-	ASSERT(GLLogCall(#x, __FILE__, __LINE__));
+class Render
+{
+public:
+	Render() {};
+	~Render() {};
 
+	void Draw(const VertexArrayObject& vao, const IndexBuffer& ib, const CustomShader& shader);
 
-void GLClearError();
-
-bool GLLogCall(const char * function, const char* file, int line);
+};

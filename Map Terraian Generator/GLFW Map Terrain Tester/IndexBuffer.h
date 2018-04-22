@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Render.h"
+#include "GL_Calls.h"
 
 class IndexBuffer
 {

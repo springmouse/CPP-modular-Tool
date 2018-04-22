@@ -48,6 +48,9 @@
     <ClCompile Include="VertexArrayObject.cpp">
       <Filter>SRC</Filter>
     </ClCompile>
+    <ClCompile Include="CustomShader.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -69,6 +72,12 @@
       <Filter>SRC</Filter>
     </ClInclude>
     <ClInclude Include="VertextBufferLayout.h">
+      <Filter>SRC</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomShader.h">
+      <Filter>SRC</Filter>
+    </ClInclude>
+    <ClInclude Include="GL_Calls.h">
       <Filter>SRC</Filter>
     </ClInclude>
   </ItemGroup>
