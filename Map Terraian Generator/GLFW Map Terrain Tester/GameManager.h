@@ -37,9 +37,14 @@ private:
 	VertexArrayObject * m_vao;
 	VertextBufferLayout * m_vbl;
 	VertexBuffer * m_vbo;
+
+	VertexArrayObject * m_vao2;
+	VertexBuffer * m_vbo2;
+
 	IndexBuffer * m_ibo;
 
 	CustomShader * m_shader;
+	CustomShader * m_shader2;
 
 	Render * m_renderer;
 

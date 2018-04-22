@@ -14,6 +14,10 @@ GameManager::GameManager()
 	m_vbl = nullptr;
 	m_shader = nullptr;
 
+	m_vbo2 = nullptr;
+	m_vao2 = nullptr;
+	m_shader2 = nullptr;
+
 	m_renderer = new Render();
 }
 
@@ -24,8 +28,12 @@ GameManager::~GameManager()
 	delete(m_ibo);
 	delete(m_vao);
 	delete(m_vbl);
+
 	delete(m_shader);
 	delete(m_renderer);
+
+	delete(m_vao2);
+	delete(m_vbo2);
 }
 
 void GameManager::Init()
@@ -68,7 +76,6 @@ void GameManager::Init()
 		0.5f, -0.5f,	//1
 		0.5f, 0.5f,		//2
 		-0.5f, 0.5f,	//3
-		
 	};
 
 	unsigned int indicies[] =
@@ -77,12 +84,25 @@ void GameManager::Init()
 		2,3,0
 	};
 
+	static const GLfloat verts2[] =
+	{
+		0.75, -0.5f,	//0
+		0.95f, -0.5f,	//1
+		0.95f, 0.5f,		//2
+		0.75f, 0.5f,	//3
+	};
+
 	m_vao = new VertexArrayObject();
 	m_vbo = new VertexBuffer(verts, sizeof(verts));
 	m_vbl = new VertextBufferLayout();
 
+
 	m_vbl->Push<float>(2);
 	m_vao->AddBuffer(*m_vbo, *m_vbl);
+
+	m_vao2 = new VertexArrayObject();
+	m_vbo2 = new VertexBuffer(verts2, sizeof(verts2));
+	m_vao2->AddBuffer(*m_vbo2, *m_vbl);
 
 	m_ibo = new IndexBuffer(indicies, 6);
 
@@ -90,6 +110,10 @@ void GameManager::Init()
 	m_shader = new CustomShader("Resources/Shaders/Basic.shader");
 	m_shader->Bind();
 	m_shader->SetUniform("u_color", glm::vec4(0.8f, 0.3f, 0.8f, 1.0f));
+
+	m_shader2 = new CustomShader("Resources/Shaders/Basic2.shader");
+	m_shader2->Bind();
+	m_shader2->SetUniform("u_color", glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
 
 	r = 0.0f;
 	g = 1.0f;
@@ -100,6 +124,9 @@ void GameManager::Init()
 	m_ibo->Unbind();
 	m_shader->Unbind();
 
+	m_vao2->Unbind();
+	m_vbo2->Unbind();
+	m_shader2->Unbind();
 }
 
 void GameManager::GameLoop()
@@ -135,6 +162,7 @@ void GameManager::Renderer()
 	m_shader->SetUniform("u_color", glm::vec4(r, g, b, 1.0f));
 	
 	m_renderer->Draw(*m_vao, *m_ibo, *m_shader);
+	m_renderer->Draw(*m_vao2, *m_ibo, *m_shader2);
 }
 
 
