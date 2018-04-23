@@ -14,12 +14,6 @@ MapClass::MapClass(int n, int scale)
 			g_mapPoints.push_back(0);
 		}
 	}
-
-	g_mapPoints[0] = 0.5f;
-	g_mapPoints[size - 1] = 0.5f;
-	g_mapPoints[size * (size - 1)] = 0.5f;
-	g_mapPoints[g_mapPoints.size() - 1] = 0.5f;
-
 }
 
 
@@ -35,10 +29,5 @@ void MapClass::GenVectors()
 		{
 			g_mapVertecs.push_back(glm::vec3(x, y, g_mapPoints[x + size * y] * m_scale));
 		}
-	}
-	
-	for (int i = 0; i < g_mapVertecs.size(); i++)
-	{
-		//g_mapVertecs[i] = glm::normalize(g_mapVertecs[i]);
-	}
+	}	
 }

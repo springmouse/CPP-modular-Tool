@@ -6,7 +6,7 @@ GameLoop::GameLoop()
 {
 	m_mapGenerator = new MapGeneratorClass();
 
-	m_map = new MapClass(m_mapGenerator->GenerateNewMap(eMapGenTypes::DIAMONDSQUARE, 6, 1));
+	m_map = new MapClass(m_mapGenerator->GenerateNewMap(eMapGenTypes::DIAMONDSQUARE, 3, 1));
 
 	m_watterHeight = 0.15f;
 	m_earthHeight = 0.45f;
@@ -16,11 +16,13 @@ GameLoop::GameLoop()
 
 	m_rWindow = new sf::RenderWindow(sf::VideoMode(800, 600), "My Window");
 
-	m_mainVeiw = new sf::View(sf::FloatRect(400, 400, 600, 400) );
+	m_mainVeiw = new sf::View(sf::FloatRect(400, 400, 600, 600) );
 
 	m_running = true;
 
 	LoadResources();
+
+	m_mainVeiw->setCenter(sf::Vector2f(m_map->g_mapVertecs[((m_map->size * m_map->size) - 1) / 2].x + 150, m_map->g_mapVertecs[((m_map->size * m_map->size) - 1) / 2].y + 150));
 }
 
 
@@ -74,6 +76,8 @@ void GameLoop::Render()
 	m_rWindow->clear(sf::Color::Black);
 
 	m_rWindow->pushGLStates();
+
+	float p1, p2, p3;
 
 	for (int i = 0; i < m_map->g_mapVertecs.size(); i++)
 	{

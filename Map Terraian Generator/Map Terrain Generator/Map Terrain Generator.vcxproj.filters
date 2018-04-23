@@ -21,6 +21,9 @@
     <ClCompile Include="MapClass.cpp">
       <Filter>MapClasses</Filter>
     </ClCompile>
+    <ClCompile Include="PerlinNoiseMap.cpp">
+      <Filter>Map Generator Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapGeneratorClass.h">
@@ -31,6 +34,9 @@
     </ClInclude>
     <ClInclude Include="MapClass.h">
       <Filter>MapClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="PerlinNoiseMap.h">
+      <Filter>Map Generator Controller</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

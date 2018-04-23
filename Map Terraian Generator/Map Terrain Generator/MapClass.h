@@ -15,7 +15,13 @@ public:
 	std::vector<float> g_mapPoints;
 	std::vector<glm::vec3> g_mapVertecs;
 
+	//the size of the array
 	int size;
+
+	//the max and min value for the map points
+	float min;
+	float max;
+	
 
 private:
 	float m_scale;
