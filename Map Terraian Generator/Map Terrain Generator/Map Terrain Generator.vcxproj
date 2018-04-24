@@ -22,12 +22,14 @@
     <ClInclude Include="DiamondSquare.h" />
     <ClInclude Include="MapClass.h" />
     <ClInclude Include="MapGeneratorClass.h" />
+    <ClInclude Include="PerlinMapClass.h" />
     <ClInclude Include="PerlinNoiseMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DiamondSquare.cpp" />
     <ClCompile Include="MapClass.cpp" />
     <ClCompile Include="MapGeneratorClass.cpp" />
+    <ClCompile Include="PerlinMapClass.cpp" />
     <ClCompile Include="PerlinNoiseMap.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

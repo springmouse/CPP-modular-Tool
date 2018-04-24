@@ -18,9 +18,16 @@ public:
 
 	void MoveVeiw();
 
+	void PerlinNoiseControls(sf::Event event);
+
+	void RenderDiamondSquare();
+	void RenderPerlinNoise();
+
 private:
 	MapGeneratorClass * m_mapGenerator;
-	MapClass * m_map;
+
+	int nOctives;
+	PerlinMapClass * m_map;
 
 	sf::RenderWindow * m_rWindow;
 

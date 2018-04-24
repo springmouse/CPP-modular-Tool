@@ -6,6 +6,7 @@
 MapGeneratorClass::MapGeneratorClass()
 {
 	m_diamondSquare = new DiamondSquare();
+	m_perlinNoise = new PerlinNoiseMap();
 }
 
 
@@ -23,6 +24,10 @@ MapClass MapGeneratorClass::GenerateNewMap(eMapGenTypes type, int n, int scale)
 		m_diamondSquare->MidPointDisplaceMeant(& map, 0, map.size - 1, map.size * (map.size - 1), map.g_mapPoints.size() - 1, 0, (map.size / 2) - 1, 10908060607);
 		break;
 
+	case PERLINNOISE:
+		m_perlinNoise->GenderatePerlinNoise(0,0,0);
+		break;
+
 	default:
 		std::cout << "Invalid Map Generator Type Passed!!!";
 		break;
@@ -32,3 +37,9 @@ MapClass MapGeneratorClass::GenerateNewMap(eMapGenTypes type, int n, int scale)
 
 	return map;
 }
+
+void MapGeneratorClass::PerlinNoiseMapGenerator(int outPutSize, int octaves, PerlinMapClass * map)
+{
+	m_perlinNoise->GenderatePerlinNoise1D(outPutSize, octaves, map);
+}
+

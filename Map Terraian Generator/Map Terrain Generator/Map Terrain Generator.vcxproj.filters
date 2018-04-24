@@ -21,8 +21,11 @@
     <ClCompile Include="MapClass.cpp">
       <Filter>MapClasses</Filter>
     </ClCompile>
+    <ClCompile Include="PerlinMapClass.cpp">
+      <Filter>MapClasses</Filter>
+    </ClCompile>
     <ClCompile Include="PerlinNoiseMap.cpp">
-      <Filter>Map Generator Controller</Filter>
+      <Filter>MapGeneratorAlgorithims</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -35,8 +38,11 @@
     <ClInclude Include="MapClass.h">
       <Filter>MapClasses</Filter>
     </ClInclude>
+    <ClInclude Include="PerlinMapClass.h">
+      <Filter>MapClasses</Filter>
+    </ClInclude>
     <ClInclude Include="PerlinNoiseMap.h">
-      <Filter>Map Generator Controller</Filter>
+      <Filter>MapGeneratorAlgorithims</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

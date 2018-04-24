@@ -1,15 +1,2 @@
-﻿  DiamondSquare.cpp
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(108): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(114): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(120): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(121): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(122): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(123): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(139): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(167): warning C4018: '<': signed/unsigned mismatch
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(175): warning C4018: '<': signed/unsigned mismatch
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(144): warning C4101: 'e2': unreferenced local variable
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(145): warning C4101: 'e3': unreferenced local variable
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(143): warning C4101: 'e1': unreferenced local variable
-c:\users\s171669\documents\github\cpp-modular-tool\map terraian generator\map terrain generator\diamondsquare.cpp(146): warning C4101: 'e4': unreferenced local variable
+﻿  PerlinNoiseMap.cpp
   Map Terrain Generator.vcxproj -> C:\Users\s171669\Documents\GitHub\CPP-modular-Tool\Map Terraian Generator\/Lib/Debug\Map Terrain Generator.lib
