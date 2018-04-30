@@ -8,13 +8,20 @@ GameLoop::GameLoop()
 
 	//m_map = new MapClass(m_mapGenerator->GenerateNewMap(eMapGenTypes::PERLINNOISE, 3, 1));
 
-	nOctives = 1;
-	m_map = new PerlinMapClass();
-	m_mapGenerator->PerlinNoiseMapGenerator(255, nOctives, m_map);
+	m_perlinNoise = new PerlinNoiseMap();
+	nOctives = 6;
 
-	m_watterHeight = 0.15f;
-	m_earthHeight = 0.45f;
-	m_stoneHeight = 0.8f;
+	for (int x = 0; x < 64; x++)
+	{
+		for (int y = 0; y < 64; y++)
+		{
+			noiseMap.push_back(glm::vec3(x, y, m_perlinNoise->OctivePerlin(x, y, rand() % 65, nOctives, 0.5)));
+		}
+	}
+
+	m_watterHeight = 0.26f;
+	m_earthHeight = 0.51f;
+	m_stoneHeight = 0.76f;
 
 	m_speed = 100.0f;
 
@@ -135,7 +142,7 @@ void GameLoop::PerlinNoiseControls(sf::Event event)
 {
 	if (event.type == sf::Event::KeyPressed)
 	{
-		if (event.key.code == sf::Keyboard::Space)
+		/*if (event.key.code == sf::Keyboard::Space)
 		{
 			nOctives++;
 
@@ -146,43 +153,60 @@ void GameLoop::PerlinNoiseControls(sf::Event event)
 
 			m_mainVeiw->setCenter(sf::Vector2f((m_map->m_finish.size() >> 2) + 150, 0));
 			m_mapGenerator->PerlinNoiseMapGenerator(255, nOctives, m_map);
-		}
+		}*/
 	}
 }
 
 void GameLoop::RenderDiamondSquare()
 {
-	for (int i = 0; i < m_map->g_mapVertecs.size(); i++)
-	{
-		if (m_map->g_mapVertecs[i].z < m_watterHeight)
-		{
-			m_watterSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
-			m_rWindow->draw(*m_watterSprite);
-		}
-		else if (m_map->g_mapVertecs[i].z < m_earthHeight)
-		{
-			m_grassSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
-			m_rWindow->draw(*m_grassSprite);
-		}
-		else if (m_map->g_mapVertecs[i].z < m_stoneHeight)
-		{
-			m_stoneSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
-			m_rWindow->draw(*m_stoneSprite);
-		}
-		else
-		{
-			m_snowSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
-			m_rWindow->draw(*m_snowSprite);
-		}
-	}
+	//for (int i = 0; i < m_map->g_mapVertecs.size(); i++)
+	//{
+	//	if (m_map->g_mapVertecs[i].z < m_watterHeight)
+	//	{
+	//		m_watterSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
+	//		m_rWindow->draw(*m_watterSprite);
+	//	}
+	//	else if (m_map->g_mapVertecs[i].z < m_earthHeight)
+	//	{
+	//		m_grassSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
+	//		m_rWindow->draw(*m_grassSprite);
+	//	}
+	//	else if (m_map->g_mapVertecs[i].z < m_stoneHeight)
+	//	{
+	//		m_stoneSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
+	//		m_rWindow->draw(*m_stoneSprite);
+	//	}
+	//	else
+	//	{
+	//		m_snowSprite->setPosition(m_map->g_mapVertecs[i].x * 32, m_map->g_mapVertecs[i].y * 32);
+	//		m_rWindow->draw(*m_snowSprite);
+	//	}
+	//}
 }
 
 void GameLoop::RenderPerlinNoise()
 {
-
-	for (int i = 0; i < m_map->m_finish.size(); i++)
+	for (int i = 0; i < noiseMap.size(); i++)
 	{
-		m_stoneSprite->setPosition(i * 32, (m_map->m_finish[i] * 100) * 32);
-		m_rWindow->draw(*m_stoneSprite);
+		if (noiseMap[i].z < m_watterHeight)
+		{
+			m_watterSprite->setPosition(noiseMap[i].x * 32, noiseMap[i].y * 32);
+			m_rWindow->draw(*m_watterSprite);
+		}
+		else if (noiseMap[i].z < m_earthHeight)
+		{
+			m_grassSprite->setPosition(noiseMap[i].x * 32, noiseMap[i].y * 32);
+			m_rWindow->draw(*m_grassSprite);
+		}
+		else if (noiseMap[i].z < m_stoneHeight)
+		{
+			m_stoneSprite->setPosition(noiseMap[i].x * 32, noiseMap[i].y * 32);
+			m_rWindow->draw(*m_stoneSprite);
+		}
+		else
+		{
+			m_snowSprite->setPosition(noiseMap[i].x * 32, noiseMap[i].y * 32);
+			m_rWindow->draw(*m_snowSprite);
+		}
 	}
 }

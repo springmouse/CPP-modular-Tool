@@ -1,8 +1,12 @@
 #pragma once
 #include<MapGeneratorClass.h>
+#include<PerlinNoiseMap.h>
 
 #include<SFML\Window.hpp>
 #include<SFML\Graphics.hpp>
+
+#include<vec4.hpp>
+#include<vector>
 
 class GameLoop
 {
@@ -25,9 +29,13 @@ public:
 
 private:
 	MapGeneratorClass * m_mapGenerator;
+	PerlinNoiseMap * m_perlinNoise;
+
+	std::vector<glm::vec3> noiseMap;
 
 	int nOctives;
-	PerlinMapClass * m_map;
+
+	////////////////////////////////////////////////////////////
 
 	sf::RenderWindow * m_rWindow;
 

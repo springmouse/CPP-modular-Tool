@@ -25,7 +25,7 @@ MapClass MapGeneratorClass::GenerateNewMap(eMapGenTypes type, int n, int scale)
 		break;
 
 	case PERLINNOISE:
-		m_perlinNoise->GenderatePerlinNoise(0,0,0);
+		//m_perlinNoise->GenderatePerlinNoise(0,0,0);
 		break;
 
 	default:
@@ -37,9 +37,3 @@ MapClass MapGeneratorClass::GenerateNewMap(eMapGenTypes type, int n, int scale)
 
 	return map;
 }
-
-void MapGeneratorClass::PerlinNoiseMapGenerator(int outPutSize, int octaves, PerlinMapClass * map)
-{
-	m_perlinNoise->GenderatePerlinNoise1D(outPutSize, octaves, map);
-}
-
