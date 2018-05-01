@@ -21,9 +21,7 @@ public:
 	void Events();
 
 	void MoveVeiw();
-
-	void PerlinNoiseControls(sf::Event event);
-
+	
 	void RenderDiamondSquare();
 	void RenderPerlinNoise();
 

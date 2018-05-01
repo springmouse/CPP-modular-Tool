@@ -16,29 +16,27 @@ PerlinNoiseMap::~PerlinNoiseMap()
 void PerlinNoiseMap::NewSeed(unsigned int seed)
 {
 	std::srand(seed);
-	std::vector<int> List;
+	m_randomMap.clear();
 
-	for (int i = 0; i < 256; i++)
+	glm::vec2 grad;
+	float delta;
+
+	for (int x = 0; x < 255; x++)
 	{
-		List.push_back(i);
-	}
+		for (int y = 0; y < 255; y++)
+		{
+			delta = (rand() % 36000) / 100;
+			delta *= 0.017453;
 
-	int n;
-	for (int i = 0; i < 256; i++)
-	{
-		n = rand() % List.size();
-		m_permutation[i] = List[n];
-
-		List.erase(List.begin() + n);
-	}
-
-	for (int i = 0; i < 512; i++)
-	{
-		p[i] = m_permutation[i % 256];
+			grad.x = std::sin(delta);
+			grad.y = std::cos(delta);
+			
+			m_randomMap.push_back(grad);
+		}
 	}
 }
 
-double PerlinNoiseMap::OctivePerlin(double x, double y, double z, int octaives, double persistence)
+double PerlinNoiseMap::OctivePerlin(double x, double y, int octaives, double persistence)
 {
 	double total = 0;
 	double frequency = 1;
@@ -47,7 +45,7 @@ double PerlinNoiseMap::OctivePerlin(double x, double y, double z, int octaives, 
 
 	for (int i = 0; i < octaives; i++)
 	{
-		total += PerlinNoise(x * frequency, y * frequency, z * frequency) * amplitude;
+		total += PerlinNoise(x * frequency, y * frequency) * amplitude;
 		
 		maxValue += amplitude;
 
@@ -58,69 +56,55 @@ double PerlinNoiseMap::OctivePerlin(double x, double y, double z, int octaives, 
 	return total / maxValue;
 }
 
-double PerlinNoiseMap::PerlinNoise(double x, double y, double z)
+double PerlinNoiseMap::PerlinNoise(float x, float y)
 {
-	if (m_repeat > 0)
-	{
-		x = (x - (int)x) + ((int)x % m_repeat);
-		y = (y - (int)y) + ((int)y % m_repeat);
-		z = (z - (int)z) + ((int)z % m_repeat);
-	}
+	// ensure x and y are within range
+	x = fmod(x, 255.0f);
+	y = fmod(y, 255.0f);
 
-	int xi = (int)x % 255;
-	int yi = (int)y % 255;
-	int zi = (int)z % 255;
+	// Determine grid cell coordinates
+	int x0 = floor(x);
+	int x1 = x0 + 1;
+	int y0 = floor(y);
+	int y1 = y0 + 1;
 
-	double xf = x - (int)x;
-	double yf = y - (int)y;
-	double zf = z - (int)z;
+	// Determine interpolation weights
+	// Could also use higher order polynomial/s-curve here
+	float sx = SmoothStep(x - (float)x0);
+	float sy = SmoothStep(y - (float)y0);
 
-	double u = Fade(xf);
-	double v = Fade(yf);
-	double w = Fade(zf);
+	// Interpolate between grid point gradients
+	float n0, n1, ix0, ix1, value;
+	n0 = DotGridGradient(x0, y0, x, y);
+	n1 = DotGridGradient(x1, y0, x, y);
+	ix0 = Lerp(n0, n1, sx);
+	n0 = DotGridGradient(x0, y1, x, y);
+	n1 = DotGridGradient(x1, y1, x, y);
+	ix1 = Lerp(n0, n1, sx);
+	value = Lerp(ix0, ix1, sy);
 
-	int aaa, aba, aab, abb, baa, bba, bab, bbb;
-	aaa = p[p[p[	xi  ] +		yi ] +	   zi ];
-	aba = p[p[p[	xi  ] +Inc(yi) ] + 	   zi ];
-	aab = p[p[p[	xi  ] +		yi ] +Inc(zi) ];
-	abb = p[p[p[	xi  ] +Inc(yi) ] +Inc(zi) ];
-	baa = p[p[p[Inc(xi) ] +		yi ] +	   zi ];
-	bba = p[p[p[Inc(xi) ] +Inc(yi) ] +	   zi ];
-	bab = p[p[p[Inc(xi) ] +		yi ] +Inc(zi) ];
-	bbb = p[p[p[Inc(xi) ] +Inc(yi) ] +Inc(zi) ];
+	// clamp between 0 and 1
+	//value = value * 0.5f + 0.5f;
 
-	double  x1, x2, y1, y2;
-	x1 = Lerp(	Grad(aaa, xf, yf, zf),
-				Grad(baa, xf-1, yf, zf),
-				u);
-
-	x2 = Lerp(	Grad(aba, xf, yf - 1, zf),
-				Grad(bab, xf - 1, yf - 1, zf),
-				u);
-
-	y1 = Lerp(x1, x2, v);
-
-	x1 = Lerp(	Grad(aab, xf, yf, zf - 1),
-				Grad(bab, xf - 1, yf, zf - 1),
-				u);
-
-	x1 = Lerp(	Grad(abb, xf, yf - 1, zf - 1),
-				Grad(bbb, xf - 1, yf - 1, zf - 1),
-				u);
-
-	y2 = Lerp(x1, x2, v);
-
-	return (Lerp(y1, y2, w) + 1) / 2;
+	return value;
 }
 
-int PerlinNoiseMap::Inc(int num)
+float PerlinNoiseMap::SmoothStep(float f)
 {
-	num++;
-	
-	if (m_repeat > 0)
-	{
-		num %= m_repeat;
-	}
+	return 6 * std::pow(f, 5) - 15 * std::pow(f, 4) + 10 * std::pow(f, 3);
+}
 
-	return num;
+float PerlinNoiseMap::DotGridGradient(int ix, int iy, float x, float y)
+{
+	// Compute the distance vector
+	float dx = x - (float)ix;
+	float dy = y - (float)iy;
+
+	// Compute the dot-product
+	return (dx * m_randomMap[iy + (ix * 255)].x + dy * m_randomMap[iy + (ix * 255)].y);
+}
+
+double PerlinNoiseMap::Lerp(double a, double b, double x)
+{
+	return (1.0f - x) * a + x * b;
 }

@@ -9,21 +9,19 @@ GameLoop::GameLoop()
 	//m_map = new MapClass(m_mapGenerator->GenerateNewMap(eMapGenTypes::PERLINNOISE, 3, 1));
 
 	m_perlinNoise = new PerlinNoiseMap();
-	nOctives = 6;
+	nOctives = 10;
 
-	for (int x = 0; x < 64; x++)
+	for (int x = 0; x < 125; x++)
 	{
-		for (int y = 0; y < 64; y++)
+		for (int y = 0; y < 125; y++)
 		{
-			noiseMap.push_back(glm::vec3(x, y, m_perlinNoise->OctivePerlin(x, y, rand() % 65, nOctives, 0.5)));
+			noiseMap.push_back(glm::vec3(x, y, m_perlinNoise->OctivePerlin( x * 0.01f, y * 0.01f, nOctives, 0.5f) * 10));
 		}
 	}
 
 	m_watterHeight = 0.26f;
 	m_earthHeight = 0.51f;
 	m_stoneHeight = 0.76f;
-
-	m_speed = 100.0f;
 
 	m_rWindow = new sf::RenderWindow(sf::VideoMode(1200, 800), "My Window");
 
@@ -109,14 +107,22 @@ void GameLoop::Events()
 			//adjust the viewport when the window is resized
 			//m_rWindow->setSize(0, 0, event.size.width, event.size.height);
 		}
-
-		PerlinNoiseControls(event);
 	}
 
 }
 
 void GameLoop::MoveVeiw()
 {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+	{
+		m_speed = 1000;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) != true)
+	{
+		m_speed = 100;
+	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		m_mainVeiw->move(sf::Vector2f(-1.0f * m_deltaTime * m_speed, 0.0f));
@@ -136,24 +142,19 @@ void GameLoop::MoveVeiw()
 	{
 		m_mainVeiw->move(sf::Vector2f(0.0f, 1.0f * m_deltaTime * m_speed));
 	}
-}
 
-void GameLoop::PerlinNoiseControls(sf::Event event)
-{
-	if (event.type == sf::Event::KeyPressed)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		/*if (event.key.code == sf::Keyboard::Space)
+		noiseMap.clear();
+		m_perlinNoise->NewSeed((unsigned int)rand() % 13000000);
+
+		for (int x = 0; x < 125; x++)
 		{
-			nOctives++;
-
-			if (nOctives == 9)
+			for (int y = 0; y < 125; y++)
 			{
-				nOctives = 1;
+				noiseMap.push_back(glm::vec3(x, y, m_perlinNoise->OctivePerlin(x * 0.01f, y * 0.01f, nOctives, 0.5f) * 10));
 			}
-
-			m_mainVeiw->setCenter(sf::Vector2f((m_map->m_finish.size() >> 2) + 150, 0));
-			m_mapGenerator->PerlinNoiseMapGenerator(255, nOctives, m_map);
-		}*/
+		}
 	}
 }
 
