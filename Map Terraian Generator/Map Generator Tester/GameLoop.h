@@ -30,6 +30,7 @@ private:
 	PerlinNoiseMap * m_perlinNoise;
 
 	std::vector<glm::vec3> noiseMap;
+	int size;
 
 	int nOctives;
 

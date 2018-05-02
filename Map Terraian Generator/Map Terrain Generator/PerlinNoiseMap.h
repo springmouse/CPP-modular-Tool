@@ -14,7 +14,7 @@ public:
 	PerlinNoiseMap();
 	~PerlinNoiseMap();
 	
-	void NewSeed(unsigned int seed);
+	void NewSeed(unsigned int seed, int size);
 	
 	double PerlinNoise(float x, float y);
 
@@ -31,6 +31,6 @@ private:
 
 	std::vector<glm::vec2> m_randomMap;
 
-	int size;
+	int m_size;
 };
 

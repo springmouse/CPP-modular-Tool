@@ -10,10 +10,11 @@ GameLoop::GameLoop()
 
 	m_perlinNoise = new PerlinNoiseMap();
 	nOctives = 10;
+	size = 175;
 
-	for (int x = 0; x < 125; x++)
+	for (int x = 0; x < size; x++)
 	{
-		for (int y = 0; y < 125; y++)
+		for (int y = 0; y < size; y++)
 		{
 			noiseMap.push_back(glm::vec3(x, y, m_perlinNoise->OctivePerlin( x * 0.01f, y * 0.01f, nOctives, 0.5f) * 10));
 		}
@@ -146,11 +147,11 @@ void GameLoop::MoveVeiw()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		noiseMap.clear();
-		m_perlinNoise->NewSeed((unsigned int)rand() % 13000000);
+		m_perlinNoise->NewSeed((unsigned int)rand() % 13000000, 255);
 
-		for (int x = 0; x < 125; x++)
+		for (int x = 0; x < size; x++)
 		{
-			for (int y = 0; y < 125; y++)
+			for (int y = 0; y < size; y++)
 			{
 				noiseMap.push_back(glm::vec3(x, y, m_perlinNoise->OctivePerlin(x * 0.01f, y * 0.01f, nOctives, 0.5f) * 10));
 			}

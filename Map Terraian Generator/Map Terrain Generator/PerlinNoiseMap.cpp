@@ -4,7 +4,7 @@
 
 PerlinNoiseMap::PerlinNoiseMap()
 {
-	NewSeed((unsigned int)(rand() % 1000001));
+	NewSeed((unsigned int)(rand() % 1000001), 255);
 	m_repeat = -1;
 }
 
@@ -13,17 +13,19 @@ PerlinNoiseMap::~PerlinNoiseMap()
 {
 }
 
-void PerlinNoiseMap::NewSeed(unsigned int seed)
+void PerlinNoiseMap::NewSeed(unsigned int seed, int size)
 {
 	std::srand(seed);
 	m_randomMap.clear();
 
+	m_size = size;
+
 	glm::vec2 grad;
 	float delta;
 
-	for (int x = 0; x < 255; x++)
+	for (int x = 0; x < m_size; x++)
 	{
-		for (int y = 0; y < 255; y++)
+		for (int y = 0; y < m_size; y++)
 		{
 			delta = (rand() % 36000) / 100;
 			delta *= 0.017453;
@@ -63,9 +65,9 @@ double PerlinNoiseMap::PerlinNoise(float x, float y)
 	y = fmod(y, 255.0f);
 
 	// Determine grid cell coordinates
-	int x0 = floor(x);
+	int x0 = std::floor(x);
 	int x1 = x0 + 1;
-	int y0 = floor(y);
+	int y0 = std::floor(y);
 	int y1 = y0 + 1;
 
 	// Determine interpolation weights
@@ -101,7 +103,7 @@ float PerlinNoiseMap::DotGridGradient(int ix, int iy, float x, float y)
 	float dy = y - (float)iy;
 
 	// Compute the dot-product
-	return (dx * m_randomMap[iy + (ix * 255)].x + dy * m_randomMap[iy + (ix * 255)].y);
+	return (dx * m_randomMap[ix * m_size + iy].x + dy * m_randomMap[ix * m_size + iy].y);
 }
 
 double PerlinNoiseMap::Lerp(double a, double b, double x)
